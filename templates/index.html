@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mars</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+
+<body>
+  <!-- Header -->
+  <div class='container-fluid'>
+    <div class='jumbotron text-center' style='color: white; margin: 30px; background-image: url("https://www.jpl.nasa.gov/spaceimages/images/largesize/PIA14293_hires.jpg");'>
+        <h1>Mission to Mars</h1>
+        <p><a class='btn btn-danger' href='/scrape' role='button'>Scrape New Data</a></p>
+    </div>
+
+    <!-- Mars News -->
+    <div class='container'>
+      <div class='row'>
+        <div class='col-md-12'>
+          <h4><strong>Latest Mars News</h4></strong>
+          <span><strong>{{mars_data.news_title}}</span></strong>
+          <p><small>{{mars_data.news_para}}</small></p>
+        </div>
+      </div>
+    </div>
+    <hr>
+
+    <!-- JPL image & facts table -->
+    <div class='container'>
+      <div class='row'>
+        <div class='col-md-7'>
+          <h4><strong><center>Featured Mars Image</strong></h4></center>
+          <img style='max-width:100%;' src = '{{mars_data.featured_img_url}}' alt='Mars Image'>
+        </div>
+        <div class='col-md-5'>
+          <h4><strong><center>Mars Facts</strong></h4></center>
+          <table class='table-responsive' id='html_table'>{{mars_data.html_table|safe}}</table>
+        </div>
+      </div>
+    </div>
+    <hr>
+
+    <!-- Hemisphere images -->
+    <div class='container'>
+      <div class='row'>
+        <div class='col-md-12'>
+          <h4><strong><center>Mars Hemispheres</strong></h4></center>
+        </div>
+        {%for item in mars_data.hem_data%}
+        <div class='col-md-6'>
+          <div class='card' style='padding: 3px;'>
+            <img src='{{item.img_url}}' class='card-img-top' alt={{item.title}}>
+            <div class='card-body text-center'>
+              <h5 class='card-title'>{{item.title}}</h5>
+            </div>
+          </div>
+          <br>
+        </div>
+        {%endfor%}
+      </div>
+    </div>
+  </div>
+
+<!-- Bootstrap Requirement -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
